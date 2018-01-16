@@ -2,10 +2,8 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://C:\Users\pavithraj\Menu.lkApp\Menu.lk App.iml" filepath="C:\Users\pavithraj\Menu.lkApp\Menu.lk App.iml" />
-      <module fileurl="file://$PROJECT_DIR$/Menu.lkApp.iml" filepath="$PROJECT_DIR$/Menu.lkApp.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Menu.lk App.iml" filepath="$PROJECT_DIR$/Menu.lk App.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
-      <module fileurl="file://C:\Users\pavithraj\Menu.lkApp\app\app.iml" filepath="C:\Users\pavithraj\Menu.lkApp\app\app.iml" />
     </modules>
   </component>
 </project>

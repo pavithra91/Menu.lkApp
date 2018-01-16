@@ -9,7 +9,7 @@ import com.menulk.app.main.ShopActivity;
 
 public class SplashActivity extends AppCompatActivity {
 
-    private static int SPLASH_TIME_OUT = 3000;  //3 Seconds
+    private static int SPLASH_TIME_OUT = 2000;  //3 Seconds
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
