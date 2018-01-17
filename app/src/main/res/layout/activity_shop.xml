@@ -7,7 +7,7 @@
     tools:context="com.menulk.app.main.ShopActivity">
 
     <android.support.v7.widget.RecyclerView
-        android:id="@+id/cardList"
+        android:id="@+id/shoprecyclerView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
     </android.support.v7.widget.RecyclerView>
