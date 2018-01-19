@@ -8,11 +8,13 @@ public class Shop {
     private String ShopName;
     private String Rating;
     private String OpenTime;
+    private String ImageURL;
 
-    public Shop(String shopName, String rating, String openTime) {
+    public Shop(String shopName, String rating, String openTime, String imageURL) {
         ShopName = shopName;
         Rating = rating;
         OpenTime = openTime;
+        ImageURL = imageURL;
     }
 
     public String getShopName() {
@@ -37,5 +39,12 @@ public class Shop {
 
     public void setOpenTime(String openTime) {
         OpenTime = openTime;
+    }
+    public String getImageURL() {
+        return ImageURL;
+    }
+
+    public void setImageURL(String imageURL) {
+        ImageURL = imageURL;
     }
 }

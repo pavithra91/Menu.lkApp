@@ -1,12 +1,16 @@
 package com.menulk.app.menu;
 
+import android.content.Context;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.menulk.app.R;
+import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 
@@ -16,7 +20,7 @@ public class MenuActivity extends AppCompatActivity {
     ArrayList<MenuItem> models;
     MenuItemAdapter menuItemAdapter;
     RecyclerView recyclerView;
-
+    private Context context;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -25,15 +29,17 @@ public class MenuActivity extends AppCompatActivity {
         TextView shopname = (TextView) findViewById(R.id.shopname);
         TextView rating = (TextView) findViewById(R.id.rating);
         TextView opentime = (TextView) findViewById(R.id.opentime);
+        ImageView shopImage = (ImageView) findViewById(R.id.mainImage);
 
         String iShopname = getIntent().getStringExtra("ShopName");
         String iRating = getIntent().getStringExtra("Rating");
         String iOpentime = getIntent().getStringExtra("OpenTime");
+        String iImageURL = getIntent().getStringExtra("ImageURL");
 
         shopname.setText(iShopname);
         rating.setText(iRating);
         opentime.setText(iOpentime);
-
+        Picasso.with(context).load(iImageURL).into(shopImage);
 
         recyclerView = (RecyclerView) findViewById(R.id.meunrecyclerView);
         models = getData();
