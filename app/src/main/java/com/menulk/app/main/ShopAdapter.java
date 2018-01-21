@@ -10,6 +10,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.menulk.app.MainActivity;
 import com.menulk.app.R;
 import com.menulk.app.menu.MenuActivity;
 import com.squareup.picasso.Picasso;
@@ -52,7 +53,7 @@ public class ShopAdapter extends RecyclerView.Adapter<ShopAdapter.ShopViewHolder
         holder.layout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(context, MenuActivity.class);
+                Intent intent = new Intent(context, MainActivity.class);
                 intent.putExtra("ShopName", shopList.get(_index).getShopName());
                 intent.putExtra("Rating", shopList.get(_index).getRating());
                 intent.putExtra("OpenTime", shopList.get(_index).getOpenTime());
