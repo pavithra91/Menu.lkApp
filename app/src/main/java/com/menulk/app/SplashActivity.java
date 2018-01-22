@@ -56,8 +56,6 @@ public class SplashActivity extends AppCompatActivity {
         requestQueue.addRequestFinishedListener(new RequestQueue.RequestFinishedListener<Object>() {
             @Override
             public void onRequestFinished(Request<Object> request) {
-                Log.e("Error Response 2","Request Finish");
-
                 new Handler().postDelayed(new Runnable() {
 
                     /*
@@ -71,8 +69,6 @@ public class SplashActivity extends AppCompatActivity {
                         Intent intent = new Intent(SplashActivity.this, MainActivity.class);
                         intent.putExtra("shopList", respondString);
                         startActivity(intent);
-
-                        Log.e("Splash Screen",respondString);
 
                         // close this activity
                         finish();

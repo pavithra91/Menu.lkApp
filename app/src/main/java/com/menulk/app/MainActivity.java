@@ -58,8 +58,6 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         String slist = getIntent().getStringExtra("shopList");
-        Log.e("Main Screen",slist);
-
         args.putString("response",slist);
 
         BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.navigation);
@@ -67,6 +65,7 @@ public class MainActivity extends AppCompatActivity {
 
         ShopFragment shopfragment = new ShopFragment();
         FragmentTransaction shoptransaction = getSupportFragmentManager().beginTransaction();
+        shopfragment.setArguments(args);
         shoptransaction.replace(R.id.content,shopfragment);
         shoptransaction.commit();
     }

@@ -63,11 +63,6 @@ public class ShopFragment extends Fragment {
 
         Bundle b = getArguments();
         String s = b.getString("response");
-        Log.e("R_Name", s);
-
-      /*  Bundle b = getArguments();
-        String s = b.getString("response");
-
 
         try {
             JSONArray response= new JSONArray(s);
@@ -82,9 +77,9 @@ public class ShopFragment extends Fragment {
 
         } catch (JSONException e) {
             e.printStackTrace();
-        }*/
+        }
 
-        models = getData();
+        models = shopList;
         final ShopAdapter adapter = new ShopAdapter(c,models);
         recyclerView.setAdapter(adapter);
 

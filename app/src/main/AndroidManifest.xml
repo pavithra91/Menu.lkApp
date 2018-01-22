@@ -24,7 +24,8 @@
         <activity android:name=".menu.MenuActivity" />
         <activity
             android:name=".MainActivity"
-            android:label="@string/title_activity_main"></activity>
+            android:label="@string/title_activity_main" />
+        <activity android:name=".order.OrderActivity"></activity>
     </application>
 
 </manifest>
