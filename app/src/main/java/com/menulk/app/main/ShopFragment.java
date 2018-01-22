@@ -20,6 +20,8 @@ import com.android.volley.toolbox.Volley;
 import com.menulk.app.R;
 
 import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.util.ArrayList;
 
@@ -32,7 +34,7 @@ public class ShopFragment extends Fragment {
     ArrayList<Shop> models;
     ShopAdapter shopAdapter;
     RecyclerView recyclerView;
-    String URL = "http://testrestfullapi.azurewebsites.net/api/Service/Get";
+    final ArrayList<Shop> shopList = new ArrayList<>();
 
     public ShopFragment() {
         // Required empty public constructor
@@ -40,31 +42,18 @@ public class ShopFragment extends Fragment {
 
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+    public View onCreateView(final LayoutInflater inflater, final ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
 
-        RequestQueue requestQueue = Volley.newRequestQueue(getActivity());
 
-        JsonArrayRequest objectRequest = new JsonArrayRequest(
-                Request.Method.GET,
-                URL,
-                null,
-                new Response.Listener<JSONArray>() {
-                    @Override
-                    public void onResponse(JSONArray response) {
-                        Log.e("REST Response",response.toString());
-                    }
-                },
-                new Response.ErrorListener() {
-                    @Override
-                    public void onErrorResponse(VolleyError error) {
-                        Log.e("Error Response",error.toString());
-                    }
-                }
-        );
 
-        requestQueue.add(objectRequest);
+        /*requestQueue.addRequestFinishedListener(new RequestQueue.RequestFinishedListener<Object>() {
+            @Override
+            public void onRequestFinished(Request<Object> request) {
+                Log.e("Error Response 2","Request Finish");
+            }
+        });*/
 
         final View view = inflater.inflate(R.layout.activity_shop, container, false);
         final FragmentActivity c = getActivity();
@@ -72,6 +61,28 @@ public class ShopFragment extends Fragment {
         LinearLayoutManager layoutManager = new LinearLayoutManager(c);
         recyclerView.setLayoutManager(layoutManager);
 
+        Bundle b = getArguments();
+        String s = b.getString("response");
+        Log.e("R_Name", s);
+
+      /*  Bundle b = getArguments();
+        String s = b.getString("response");
+
+
+        try {
+            JSONArray response= new JSONArray(s);
+
+            for(int i=0; i<response.length();i++)
+            {
+                JSONObject json_data = response.getJSONObject(i);
+                Shop shop = new Shop(json_data.getString("R_Name"),json_data.getString("R_Rating"),json_data.getString("R_OpenTime"), json_data.getString("R_Image"));
+                shopList.add(shop);
+                Log.e("R_Name", String.valueOf(shopList.size()));
+            }
+
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }*/
 
         models = getData();
         final ShopAdapter adapter = new ShopAdapter(c,models);
