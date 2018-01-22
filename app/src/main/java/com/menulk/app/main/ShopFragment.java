@@ -6,11 +6,20 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonArrayRequest;
+import com.android.volley.toolbox.Volley;
 import com.menulk.app.R;
+
+import org.json.JSONArray;
 
 import java.util.ArrayList;
 
@@ -23,6 +32,8 @@ public class ShopFragment extends Fragment {
     ArrayList<Shop> models;
     ShopAdapter shopAdapter;
     RecyclerView recyclerView;
+    String URL = "http://testrestfullapi.azurewebsites.net/api/Service/Get";
+
     public ShopFragment() {
         // Required empty public constructor
     }
@@ -33,11 +44,34 @@ public class ShopFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
 
+        RequestQueue requestQueue = Volley.newRequestQueue(getActivity());
+
+        JsonArrayRequest objectRequest = new JsonArrayRequest(
+                Request.Method.GET,
+                URL,
+                null,
+                new Response.Listener<JSONArray>() {
+                    @Override
+                    public void onResponse(JSONArray response) {
+                        Log.e("REST Response",response.toString());
+                    }
+                },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        Log.e("Error Response",error.toString());
+                    }
+                }
+        );
+
+        requestQueue.add(objectRequest);
+
         final View view = inflater.inflate(R.layout.activity_shop, container, false);
         final FragmentActivity c = getActivity();
         final RecyclerView recyclerView = (RecyclerView) view.findViewById(R.id.shoprecyclerView);
         LinearLayoutManager layoutManager = new LinearLayoutManager(c);
         recyclerView.setLayoutManager(layoutManager);
+
 
         models = getData();
         final ShopAdapter adapter = new ShopAdapter(c,models);
@@ -48,6 +82,8 @@ public class ShopFragment extends Fragment {
 
     public static ArrayList<Shop> getData()
     {
+
+
         ArrayList<Shop> shopList = new ArrayList<>();
         Shop s = new Shop("Coffee Bean","4.5","9AM-10PM", "https://financialtribune.com/sites/default/files/field/image/17january/04-ff-coffee_120-ab.jpg");
         shopList.add(s);

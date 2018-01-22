@@ -53,7 +53,7 @@ public class ShopAdapter extends RecyclerView.Adapter<ShopAdapter.ShopViewHolder
         holder.layout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(context, MainActivity.class);
+                Intent intent = new Intent(context, MenuActivity.class);
                 intent.putExtra("ShopName", shopList.get(_index).getShopName());
                 intent.putExtra("Rating", shopList.get(_index).getRating());
                 intent.putExtra("OpenTime", shopList.get(_index).getOpenTime());
