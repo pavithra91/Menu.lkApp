@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -22,7 +22,9 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_alignParentBottom="true"
-        android:layout_below="@id/layoutTop" >
+        android:layout_below="@id/layoutTop"
+        tools:layout_editor_absoluteX="67dp"
+        tools:layout_editor_absoluteY="213dp">
 
         <TextView
             android:id="@+id/item_name"
@@ -46,38 +48,52 @@
             android:id="@+id/textView7"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
             android:layout_below="@+id/item_description"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="11dp"
-            android:text="Special In******" />
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="14dp"
+            android:text="Special Instruction" />
 
-        <EditText
-            android:id="@+id/special_instructions"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/textView7"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="13dp"
-            android:ems="10"
-            android:inputType="textPersonName"
-            android:text="Spcial......" />
+        <LinearLayout
+            android:id="@+id/splayout"
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            android:layout_alignTop="@+id/textView7"
+            android:layout_alignParentStart="true"
+            android:layout_marginBottom="13dp"
+            android:orientation="vertical">
+
+            <EditText
+                android:id="@+id/special_instructions"
+                android:layout_width="371dp"
+                android:layout_height="69dp"
+                android:layout_marginTop="11dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:layout_marginBottom="11dp"
+                android:ems="10"
+                android:inputType="textPersonName"
+                android:hint="Rest" />
+
+        </LinearLayout>
+
+
 
         <Button
             android:id="@+id/button3"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/special_instructions"
-            android:layout_marginTop="44dp"
-            android:layout_toLeftOf="@+id/textView7"
-            android:layout_toStartOf="@+id/textView7"
+            android:layout_below="@+id/splayout"
+            android:layout_marginTop="16dp"
+            android:layout_toStartOf="@+id/item_description"
             android:text="-" />
 
         <TextView
             android:id="@+id/textView9"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignBottom="@+id/button3"
             android:layout_alignTop="@+id/button4"
+            android:layout_marginTop="15dp"
             android:layout_centerHorizontal="true"
             android:text="1" />
 
@@ -85,14 +101,14 @@
             android:id="@+id/button4"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignBaseline="@+id/button3"
             android:layout_alignBottom="@+id/button3"
-            android:layout_toEndOf="@+id/textView7"
-            android:layout_toRightOf="@+id/textView7"
+            android:layout_toEndOf="@+id/item_description"
             android:text="+" />
+
+
 
     </RelativeLayout>
 
     <!-- This should be always half the height, can also be calculated and added programtically -->
 
-</android.support.constraint.ConstraintLayout>
+</RelativeLayout>

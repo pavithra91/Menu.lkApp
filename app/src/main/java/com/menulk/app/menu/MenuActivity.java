@@ -24,7 +24,7 @@ public class MenuActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_menu);
+        setContentView(R.layout.check);
 
         TextView shopname = (TextView) findViewById(R.id.shopname);
         TextView rating = (TextView) findViewById(R.id.rating);

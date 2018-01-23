@@ -4,23 +4,20 @@
     android:layout_height="match_parent">
 
 
-    <android.support.v7.widget.CardView
-        xmlns:android="http://schemas.android.com/apk/res/android"
+    <android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:card_view="http://schemas.android.com/apk/res-auto"
-        android:foreground="?android:attr/selectableItemBackground"
-        android:clickable="true"
         android:id="@+id/item"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        card_view:cardCornerRadius="2dp"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:layout_marginBottom="10dp"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="26dp"
         android:layout_weight="1"
+        android:clickable="true"
+        android:foreground="?android:attr/selectableItemBackground"
+        android:onClick="Item"
         card_view:cardBackgroundColor="#ffffff"
-        android:layout_marginTop="55dp"
-        android:onClick="Item">
+        card_view:cardCornerRadius="2dp">
 
 
         <LinearLayout
@@ -29,73 +26,74 @@
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
-        <RelativeLayout
-            android:id="@+id/relativeLayout"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true"
-            android:layout_marginBottom="142dp"
-            android:background="#fff"
-            android:orientation="vertical"
-            android:padding="10dp">
-
-            <!-- ListRow Left sied Thumbnail image -->
-
-            <!-- Title Of Song -->
-
-
-            <ImageView
-                android:id="@+id/list_image"
-                android:layout_width="50dip"
-                android:layout_height="50dip"
-                android:layout_alignParentEnd="true"
-                android:layout_alignParentRight="true"
-                android:layout_alignParentTop="true"
-                android:src="@drawable/latte" />
-
-            <TextView
-                android:id="@+id/item_name"
-                android:layout_width="wrap_content"
+            <RelativeLayout
+                android:id="@+id/relativeLayout"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
                 android:layout_alignParentLeft="true"
                 android:layout_alignParentStart="true"
-                android:layout_alignParentTop="true"
-                android:text="Latte "
-                android:textColor="#040404"
-                android:textSize="15dip"
-                android:textStyle="bold"
-                android:typeface="sans" />
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"
+                android:background="#fff"
+                android:orientation="vertical"
+                android:padding="10dp">
 
-            <TextView
-                android:id="@+id/item_description"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentLeft="true"
-                android:layout_alignParentStart="true"
-                android:layout_centerVertical="true"
-                android:layout_gravity="center_horizontal|center_vertical"
-                android:layout_weight="0.08"
-                android:paddingRight="5dip"
-                android:text="Made with espresso and steamed milk."
-                android:textColor="#808080"
-                android:textSize="12dip" />
+                <!-- ListRow Left sied Thumbnail image -->
 
-            <TextView
-                android:id="@+id/item_price"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignBottom="@+id/list_image"
-                android:layout_alignParentLeft="true"
-                android:layout_alignParentStart="true"
-                android:layout_gravity="center_horizontal|center_vertical"
-                android:paddingRight="25dip"
-                android:text="Rs 200"
-                android:textColor="#808080"
-                android:textSize="12dip" />
+                <!-- Title Of Song -->
 
-        </RelativeLayout>
+
+                <ImageView
+                    android:id="@+id/list_image"
+                    android:layout_width="50dip"
+                    android:layout_height="50dip"
+                    android:layout_alignParentEnd="true"
+                    android:layout_alignParentRight="true"
+                    android:layout_alignParentTop="true"
+                    android:src="@drawable/latte" />
+
+                <TextView
+                    android:id="@+id/item_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentStart="true"
+                    android:layout_alignParentTop="true"
+                    android:text="Latte "
+                    android:textColor="#040404"
+                    android:textSize="15dip"
+                    android:textStyle="bold"
+                    android:typeface="sans" />
+
+                <TextView
+                    android:id="@+id/item_description"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentStart="true"
+                    android:layout_centerVertical="true"
+                    android:layout_gravity="center_horizontal|center_vertical"
+                    android:layout_weight="0.08"
+                    android:paddingRight="5dip"
+                    android:text="Made with espresso and steamed milk."
+                    android:textColor="#808080"
+                    android:textSize="12dip" />
+
+                <TextView
+                    android:id="@+id/item_price"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignBottom="@+id/list_image"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentStart="true"
+                    android:layout_gravity="center_horizontal|center_vertical"
+                    android:paddingRight="25dip"
+                    android:text="Rs 200"
+                    android:textColor="#808080"
+                    android:textSize="12dip" />
+
+            </RelativeLayout>
         </LinearLayout>
     </android.support.v7.widget.CardView>
 
