@@ -35,6 +35,7 @@ public class MenuActivity extends AppCompatActivity {
         String iRating = getIntent().getStringExtra("Rating");
         String iOpentime = getIntent().getStringExtra("OpenTime");
         String iImageURL = getIntent().getStringExtra("ImageURL");
+        String Response = getIntent().getStringExtra("RESTresponse");
 
         shopname.setText(iShopname);
         rating.setText(iRating);

@@ -32,7 +32,6 @@ public class SplashActivity extends AppCompatActivity {
 
         RequestQueue requestQueue = Volley.newRequestQueue(this);
 
-
         JsonArrayRequest objectRequest = new JsonArrayRequest(
                 Request.Method.GET,
                 URL,

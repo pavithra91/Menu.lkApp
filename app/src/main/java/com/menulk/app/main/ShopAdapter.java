@@ -3,6 +3,7 @@ package com.menulk.app.main;
 import android.content.Context;
 import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,12 +11,20 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
 import com.menulk.app.MainActivity;
 import com.menulk.app.R;
 import com.menulk.app.menu.MenuActivity;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * Created by Pavithra on 1/17/2018.
@@ -25,6 +34,8 @@ public class ShopAdapter extends RecyclerView.Adapter<ShopAdapter.ShopViewHolder
     private ArrayList<Shop> shopList;
     private Context context;
     protected static ImageView sImage;
+    String url = "http://testrestfullapi.azurewebsites.net/api/Service/GetItems";
+    String Response;
 
     public ShopAdapter(Context context, ArrayList<Shop> shopList) {
         this.context = context;
@@ -53,12 +64,56 @@ public class ShopAdapter extends RecyclerView.Adapter<ShopAdapter.ShopViewHolder
         holder.layout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(context, MenuActivity.class);
-                intent.putExtra("ShopName", shopList.get(_index).getShopName());
-                intent.putExtra("Rating", shopList.get(_index).getRating());
-                intent.putExtra("OpenTime", shopList.get(_index).getOpenTime());
-                intent.putExtra("ImageURL", shopList.get(_index).getImageURL());
-                context.startActivity(intent);
+
+                RequestQueue queue = Volley.newRequestQueue(context);
+
+
+
+                StringRequest postRequest = new StringRequest(Request.Method.POST, url,
+                        new Response.Listener<String>()
+                        {
+                            @Override
+                            public void onResponse(String response) {
+                                // response
+                                Response = response;
+                                Log.d("Response", response);
+                            }
+                        },
+                        new Response.ErrorListener()
+                        {
+                            @Override
+                            public void onErrorResponse(VolleyError error) {
+                                // error
+                                Log.e("Error.Response", error.getMessage());
+                            }
+                        }
+                ) {
+                    @Override
+                    protected Map<String, String> getParams()
+                    {
+                        Map<String, String>  params = new HashMap<String, String>();
+                        params.put("Rid", "2");
+
+                        return params;
+                    }
+                };
+                queue.add(postRequest);
+
+                queue.addRequestFinishedListener(new RequestQueue.RequestFinishedListener<Object>() {
+                    @Override
+                    public void onRequestFinished(Request<Object> request) {
+
+                        Intent intent = new Intent(context, MenuActivity.class);
+                        intent.putExtra("ShopName", shopList.get(_index).getShopName());
+                        intent.putExtra("Rating", shopList.get(_index).getRating());
+                        intent.putExtra("OpenTime", shopList.get(_index).getOpenTime());
+                        intent.putExtra("ImageURL", shopList.get(_index).getImageURL());
+                        intent.putExtra("RESTresponse", Response);
+                        context.startActivity(intent);
+
+                        Log.e("Error Response 2","Request Finish");
+                    }
+                });
             }
         });
     }

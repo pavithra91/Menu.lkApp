@@ -86,10 +86,10 @@ public class ShopFragment extends Fragment {
         return view;
     }
 
+
+
     public static ArrayList<Shop> getData()
     {
-
-
         ArrayList<Shop> shopList = new ArrayList<>();
         Shop s = new Shop("Coffee Bean","4.5","9AM-10PM", "https://financialtribune.com/sites/default/files/field/image/17january/04-ff-coffee_120-ab.jpg");
         shopList.add(s);
