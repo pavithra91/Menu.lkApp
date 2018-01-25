@@ -22,13 +22,14 @@
 
             <RelativeLayout
                 android:id="@+id/layoutTop"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@android:color/white">
 
                 <ImageView
                     android:id="@+id/mainImage"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
+                    android:layout_height="wrap_content"
                     android:layout_centerHorizontal="true"
                     android:adjustViewBounds="true"
                     android:background="@drawable/images" />
@@ -36,6 +37,7 @@
                 <RelativeLayout
                     android:id="@+id/layoutContent"
                     android:layout_width="match_parent"
+                    android:layout_marginTop="25dp"
                     android:layout_height="wrap_content"
                     android:layout_alignParentStart="true"
                     android:layout_below="@+id/linearLayout">
@@ -43,10 +45,10 @@
                     <ImageView
                         android:id="@+id/overlapImage"
                         android:layout_width="350dp"
-                        android:layout_height="100dp"
-                        android:layout_alignParentBottom="true"
+                        android:layout_height="80dp"
+                        android:layout_alignParentTop="true"
                         android:layout_centerHorizontal="true"
-                        android:layout_marginBottom="33dp"
+                        android:layout_marginTop="123dp"
                         android:adjustViewBounds="true"
                         android:background="@drawable/white" />
 
@@ -65,7 +67,7 @@
                         android:id="@+id/rating"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_alignTop="@+id/overlapImage"
+                        android:layout_below="@+id/shopname"
                         android:layout_centerHorizontal="true"
                         android:pointerIcon="@drawable/star"
                         android:text="Rateing 4.1"
@@ -77,20 +79,10 @@
                         android:layout_height="wrap_content"
                         android:layout_below="@+id/rating"
                         android:layout_centerHorizontal="true"
-                        android:layout_marginTop="20dp"
                         android:pointerIcon="@drawable/time"
                         android:text="10.30a.m. - 3,30 p.m."
                         android:textColor="#808080" />
                 </RelativeLayout>
-
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_centerInParent="true"
-                    android:gravity="center_horizontal"
-                    android:orientation="vertical"
-                    android:id="@+id/linearLayout">
-                </LinearLayout>
 
             </RelativeLayout>
 

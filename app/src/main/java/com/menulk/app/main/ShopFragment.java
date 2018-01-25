@@ -70,7 +70,7 @@ public class ShopFragment extends Fragment {
             for(int i=0; i<response.length();i++)
             {
                 JSONObject json_data = response.getJSONObject(i);
-                Shop shop = new Shop(json_data.getString("R_Name"),json_data.getString("R_Rating"),json_data.getString("R_OpenTime"), json_data.getString("R_Image"));
+                Shop shop = new Shop(json_data.getString("RestaurantID"),json_data.getString("R_Name"),json_data.getString("R_Rating"),json_data.getString("R_OpenTime"), json_data.getString("R_Image"));
                 shopList.add(shop);
                 Log.e("R_Name", String.valueOf(shopList.size()));
             }
@@ -91,10 +91,10 @@ public class ShopFragment extends Fragment {
     public static ArrayList<Shop> getData()
     {
         ArrayList<Shop> shopList = new ArrayList<>();
-        Shop s = new Shop("Coffee Bean","4.5","9AM-10PM", "https://financialtribune.com/sites/default/files/field/image/17january/04-ff-coffee_120-ab.jpg");
+        Shop s = new Shop("2","Coffee Bean","4.5","9AM-10PM", "https://financialtribune.com/sites/default/files/field/image/17january/04-ff-coffee_120-ab.jpg");
         shopList.add(s);
 
-        Shop s2 = new Shop("Praneetha","3.8","9AM-10PM", "https://mediavine-res.cloudinary.com/image/upload/s--CQwblqNQ--/c_limit,f_auto,fl_lossy,h_1080,q_auto,w_1920/v1506850341/u1cy0q8qmqrdjjn7udmx.jpg");
+        Shop s2 = new Shop("4","Praneetha","3.8","9AM-10PM", "https://mediavine-res.cloudinary.com/image/upload/s--CQwblqNQ--/c_limit,f_auto,fl_lossy,h_1080,q_auto,w_1920/v1506850341/u1cy0q8qmqrdjjn7udmx.jpg");
         shopList.add(s2);
 
         return shopList;

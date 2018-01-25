@@ -5,6 +5,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -12,12 +13,16 @@ import android.widget.TextView;
 import com.menulk.app.R;
 import com.squareup.picasso.Picasso;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.util.ArrayList;
 
 public class MenuActivity extends AppCompatActivity {
 
     LinearLayoutManager linearLayoutManager;
-    ArrayList<MenuItem> models;
+    ArrayList<MenuItem> models  = new ArrayList<>();;
     MenuItemAdapter menuItemAdapter;
     RecyclerView recyclerView;
     private Context context;
@@ -37,13 +42,32 @@ public class MenuActivity extends AppCompatActivity {
         String iImageURL = getIntent().getStringExtra("ImageURL");
         String Response = getIntent().getStringExtra("RESTresponse");
 
+        Log.e("R_Name", Response);
+
+       try {
+            JSONArray response= new JSONArray(Response);
+
+            for(int i=0; i<response.length();i++)
+            {
+                JSONObject json_data = response.getJSONObject(i);
+
+                MenuItem shop = new MenuItem(json_data.getString("ItemID"),json_data.getString("ItemName"),json_data.getString("Description"),json_data.getString("Price"), json_data.getString("ItemImage"));
+                models.add(shop);
+            }
+
+            Log.e("R_Name", String.valueOf(models.size()));
+
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
         shopname.setText(iShopname);
         rating.setText(iRating);
         opentime.setText(iOpentime);
         Picasso.with(context).load(iImageURL).into(shopImage);
 
         recyclerView = (RecyclerView) findViewById(R.id.meunrecyclerView);
-        models = getData();
+        //models = getData();
         linearLayoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(linearLayoutManager);
         recyclerView.setHasFixedSize(true);
@@ -54,10 +78,10 @@ public class MenuActivity extends AppCompatActivity {
     public static ArrayList<MenuItem> getData()
     {
         ArrayList<MenuItem> menuItemList = new ArrayList<>();
-        MenuItem s = new MenuItem("Latte","Made with espresso and steamed milk.","RS. 300", "");
+        MenuItem s = new MenuItem("2","Latte","Made with espresso and steamed milk.","RS. 300", "");
         menuItemList.add(s);
 
-        MenuItem s2 = new MenuItem("Cappuccino","Prepared with double espresso, and steamed milk foam.","RS. 450", "");
+        MenuItem s2 = new MenuItem("1","Cappuccino","Prepared with double espresso, and steamed milk foam.","RS. 450", "");
         menuItemList.add(s2);
 
         return menuItemList;

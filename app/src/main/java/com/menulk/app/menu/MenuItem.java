@@ -5,16 +5,26 @@ package com.menulk.app.menu;
  */
 
 public class MenuItem {
+    private String ItemID;
     private String ItemName;
     private String Description;
     private String Price;
     private String Image;
 
-    public MenuItem(String itemName, String description, String price, String image) {
+    public MenuItem(String itemID, String itemName, String description, String price, String image) {
+        ItemID = itemID;
         ItemName = itemName;
         Description = description;
         Price = price;
         Image = image;
+    }
+
+    public String getItemID() {
+        return ItemID;
+    }
+
+    public void setItemID(String itemID) {
+        ItemID = itemID;
     }
 
     public String getItemName() {

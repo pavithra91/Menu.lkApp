@@ -5,16 +5,26 @@ package com.menulk.app.main;
  */
 
 public class Shop {
+    private String ShopID;
     private String ShopName;
     private String Rating;
     private String OpenTime;
     private String ImageURL;
 
-    public Shop(String shopName, String rating, String openTime, String imageURL) {
+    public Shop(String shopID, String shopName, String rating, String openTime, String imageURL) {
+        ShopID = shopID;
         ShopName = shopName;
         Rating = rating;
         OpenTime = openTime;
         ImageURL = imageURL;
+    }
+
+    public String getShopID() {
+        return ShopID;
+    }
+
+    public void setShopID(String shopID) {
+        ShopID = shopID;
     }
 
     public String getShopName() {

@@ -61,13 +61,15 @@ public class ShopAdapter extends RecyclerView.Adapter<ShopAdapter.ShopViewHolder
 
         Picasso.with(context).load(shopList.get(position).getImageURL()).into(sImage);
 
+        final String ShopID = shopList.get(_index).getShopID();
+
         holder.layout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
                 RequestQueue queue = Volley.newRequestQueue(context);
 
-
+                url = url + "/" + ShopID;
 
                 StringRequest postRequest = new StringRequest(Request.Method.POST, url,
                         new Response.Listener<String>()
@@ -92,7 +94,7 @@ public class ShopAdapter extends RecyclerView.Adapter<ShopAdapter.ShopViewHolder
                     protected Map<String, String> getParams()
                     {
                         Map<String, String>  params = new HashMap<String, String>();
-                        params.put("Rid", "2");
+                        params.put("Rid", ShopID);
 
                         return params;
                     }
@@ -104,6 +106,7 @@ public class ShopAdapter extends RecyclerView.Adapter<ShopAdapter.ShopViewHolder
                     public void onRequestFinished(Request<Object> request) {
 
                         Intent intent = new Intent(context, MenuActivity.class);
+                        intent.putExtra("ShopID", ShopID);
                         intent.putExtra("ShopName", shopList.get(_index).getShopName());
                         intent.putExtra("Rating", shopList.get(_index).getRating());
                         intent.putExtra("OpenTime", shopList.get(_index).getOpenTime());
