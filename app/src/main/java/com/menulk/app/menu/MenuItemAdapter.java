@@ -7,12 +7,14 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.menulk.app.R;
 import com.menulk.app.order.OrderActivity;
+import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 
@@ -23,6 +25,7 @@ import java.util.ArrayList;
 public class MenuItemAdapter extends RecyclerView.Adapter<MenuItemAdapter.MenuItemViewHolder> {
     private ArrayList<MenuItem> itemList;
     private Context context;
+    protected static ImageView sImage;
 
     public MenuItemAdapter(Context context, ArrayList<MenuItem> itemList) {
         this.context = context;
@@ -48,6 +51,9 @@ public class MenuItemAdapter extends RecyclerView.Adapter<MenuItemAdapter.MenuIt
         holder.iDescription.setText(itemList.get(position).getDescription());
         holder.iPrice.setText(itemList.get(position).getPrice());
 
+
+        Picasso.with(context).load(itemList.get(position).getImage()).resize(100,100).into(sImage);
+
         holder.layout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -56,7 +62,7 @@ public class MenuItemAdapter extends RecyclerView.Adapter<MenuItemAdapter.MenuIt
                 intent.putExtra("ItemName", itemList.get(_index).getItemName());
                 intent.putExtra("Description", itemList.get(_index).getDescription());
                 intent.putExtra("Price", itemList.get(_index).getPrice());
-                //intent.putExtra("ImageURL", itemList.get(_index).getImage());
+                intent.putExtra("ImageURL", itemList.get(_index).getImage());
                 context.startActivity(intent);
             }
         });
@@ -78,6 +84,7 @@ public class MenuItemAdapter extends RecyclerView.Adapter<MenuItemAdapter.MenuIt
             iName =  (TextView) itemView.findViewById(R.id.item_name);
             iDescription = (TextView)  itemView.findViewById(R.id.item_description);
             iPrice = (TextView)  itemView.findViewById(R.id.item_price);
+            sImage = (ImageView) itemView.findViewById(R.id.list_image);
             layout = (LinearLayout)itemView.findViewById(R.id.linear_layout_card);
         }
     }

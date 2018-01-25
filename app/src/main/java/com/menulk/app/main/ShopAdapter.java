@@ -69,9 +69,12 @@ public class ShopAdapter extends RecyclerView.Adapter<ShopAdapter.ShopViewHolder
 
                 RequestQueue queue = Volley.newRequestQueue(context);
 
-                url = url + "/" + ShopID;
+                String newurl = url + "/" + ShopID;
 
-                StringRequest postRequest = new StringRequest(Request.Method.POST, url,
+                Log.d("URL", newurl);
+                Log.d("ShopID", ShopID);
+
+                StringRequest postRequest = new StringRequest(Request.Method.POST, newurl,
                         new Response.Listener<String>()
                         {
                             @Override

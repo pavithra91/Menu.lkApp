@@ -9,6 +9,7 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.cepheuen.elegantnumberbutton.view.ElegantNumberButton;
 import com.menulk.app.AppCode.CustomerOrder;
 import com.menulk.app.R;
 import com.menulk.app.profile.CheckoutActivity;
@@ -16,6 +17,7 @@ import com.squareup.picasso.Picasso;
 
 public class OrderActivity extends AppCompatActivity {
 
+    ElegantNumberButton btnQty;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -25,7 +27,15 @@ public class OrderActivity extends AppCompatActivity {
         TextView itemDescription = (TextView) findViewById(R.id.item_description);
         TextView itemPrice = (TextView) findViewById(R.id.item_price);
         Button _addtoCart = (Button) findViewById(R.id.addtoCart);
+        btnQty = findViewById(R.id.incrementButtons);
         // itemImage = (ImageView) findViewById(R.id.ima);
+
+        btnQty.setOnClickListener(new ElegantNumberButton.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                String Qty = btnQty.getNumber();
+            }
+        });
 
         String name = getIntent().getStringExtra("ItemName");
         final String _description = getIntent().getStringExtra("Description");
