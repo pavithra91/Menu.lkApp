@@ -15,14 +15,18 @@ public class CustomerOrder implements Parcelable{
     private String ItemPrice;
     private String ItemDescription;
     private String ItemImage;
+    private String SpecialNotes;
+    private int ItemQty;
 
-    public CustomerOrder(String orderID, int restaurantID, int itemId, String itemPrice, String itemDescription, String itemImage) {
+    public CustomerOrder(String orderID, int restaurantID, int itemId, String itemPrice, String itemDescription, String itemImage, String specialNotes,int itemQty) {
         OrderID = orderID;
         RestaurantID = restaurantID;
         ItemId = itemId;
         ItemPrice = itemPrice;
         ItemDescription = itemDescription;
         ItemImage = itemImage;
+        SpecialNotes = specialNotes;
+        ItemQty = itemQty;
     }
 
     protected CustomerOrder(Parcel in) {
@@ -32,6 +36,8 @@ public class CustomerOrder implements Parcelable{
         ItemPrice = in.readString();
         ItemDescription = in.readString();
         ItemImage = in.readString();
+        SpecialNotes = in.readString();
+        ItemQty = in.readInt();
     }
 
     public static final Creator<CustomerOrder> CREATOR = new Creator<CustomerOrder>() {
@@ -94,6 +100,22 @@ public class CustomerOrder implements Parcelable{
         ItemImage = itemImage;
     }
 
+    public String getSpecialNotes() {
+        return SpecialNotes;
+    }
+
+    public void setSpecialNotes(String specialNotes) {
+        SpecialNotes = specialNotes;
+    }
+
+    public int getItemQty() {
+        return ItemQty;
+    }
+
+    public void setItemQty(int itemQty) {
+        ItemQty = itemQty;
+    }
+
     @Override
     public int describeContents() {
         return 0;
@@ -107,5 +129,7 @@ public class CustomerOrder implements Parcelable{
         parcel.writeString(ItemPrice);
         parcel.writeString(ItemDescription);
         parcel.writeString(ItemImage);
+        parcel.writeString(SpecialNotes);
+        parcel.writeInt(ItemQty);
     }
 }

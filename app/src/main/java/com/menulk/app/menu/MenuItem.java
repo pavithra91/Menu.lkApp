@@ -6,13 +6,15 @@ package com.menulk.app.menu;
 
 public class MenuItem {
     private String ItemID;
+    private String RestaurantID;
     private String ItemName;
     private String Description;
     private String Price;
     private String Image;
 
-    public MenuItem(String itemID, String itemName, String description, String price, String image) {
+    public MenuItem(String itemID, String restaurantID, String itemName, String description, String price, String image) {
         ItemID = itemID;
+        RestaurantID = restaurantID;
         ItemName = itemName;
         Description = description;
         Price = price;
@@ -25,6 +27,14 @@ public class MenuItem {
 
     public void setItemID(String itemID) {
         ItemID = itemID;
+    }
+
+    public String getRestaurantID() {
+        return RestaurantID;
+    }
+
+    public void setRestaurantID(String restaurantID) {
+        RestaurantID = restaurantID;
     }
 
     public String getItemName() {

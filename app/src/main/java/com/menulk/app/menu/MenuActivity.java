@@ -33,13 +33,15 @@ public class MenuActivity extends AppCompatActivity {
 
         TextView shopname = (TextView) findViewById(R.id.shopname);
         TextView rating = (TextView) findViewById(R.id.rating);
-        TextView opentime = (TextView) findViewById(R.id.opentime);
+        TextView deliveryTime = (TextView) findViewById(R.id.deliveryTime);
+        TextView tags = (TextView) findViewById(R.id.tags);
         ImageView shopImage = (ImageView) findViewById(R.id.mainImage);
 
         String iShopname = getIntent().getStringExtra("ShopName");
         String iRating = getIntent().getStringExtra("Rating");
-        String iOpentime = getIntent().getStringExtra("OpenTime");
+        String iDeliveryTime = getIntent().getStringExtra("OpenTime");
         String iImageURL = getIntent().getStringExtra("ImageURL");
+        String iTags = getIntent().getStringExtra("Tags");
         String Response = getIntent().getStringExtra("RESTresponse");
 
         Log.e("R_Name", Response);
@@ -51,11 +53,9 @@ public class MenuActivity extends AppCompatActivity {
             {
                 JSONObject json_data = response.getJSONObject(i);
 
-                MenuItem shop = new MenuItem(json_data.getString("ItemID"),json_data.getString("ItemName"),json_data.getString("Description"),json_data.getString("Price"), json_data.getString("ItemImage"));
-                models.add(shop);
+                MenuItem menuItem = new MenuItem(json_data.getString("ItemID"), json_data.getString("RestaurantID") ,json_data.getString("ItemName"),json_data.getString("Description"),json_data.getString("Price"), json_data.getString("ItemImage"));
+                models.add(menuItem);
             }
-
-            Log.e("R_Name", String.valueOf(models.size()));
 
         } catch (JSONException e) {
             e.printStackTrace();
@@ -63,7 +63,8 @@ public class MenuActivity extends AppCompatActivity {
 
         shopname.setText(iShopname);
         rating.setText(iRating);
-        opentime.setText(iOpentime);
+        deliveryTime.setText(iDeliveryTime);
+        tags.setText(iTags);
         Picasso.with(context).load(iImageURL).into(shopImage);
 
         recyclerView = (RecyclerView) findViewById(R.id.meunrecyclerView);
@@ -78,10 +79,10 @@ public class MenuActivity extends AppCompatActivity {
     public static ArrayList<MenuItem> getData()
     {
         ArrayList<MenuItem> menuItemList = new ArrayList<>();
-        MenuItem s = new MenuItem("2","Latte","Made with espresso and steamed milk.","RS. 300", "");
+        MenuItem s = new MenuItem("2","2","Latte","Made with espresso and steamed milk.","RS. 300", "");
         menuItemList.add(s);
 
-        MenuItem s2 = new MenuItem("1","Cappuccino","Prepared with double espresso, and steamed milk foam.","RS. 450", "");
+        MenuItem s2 = new MenuItem("1","2","Cappuccino","Prepared with double espresso, and steamed milk foam.","RS. 450", "");
         menuItemList.add(s2);
 
         return menuItemList;

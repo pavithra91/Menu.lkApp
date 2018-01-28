@@ -1,10 +1,14 @@
 package com.menulk.app;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Handler;
+import android.provider.Settings;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.widget.Toast;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -12,6 +16,7 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.Volley;
+import com.menulk.app.AppCode.ConnectivityCheck;
 import com.menulk.app.main.Shop;
 import com.menulk.app.main.ShopActivity;
 
@@ -30,54 +35,81 @@ public class SplashActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        RequestQueue requestQueue = Volley.newRequestQueue(this);
+        if(ConnectivityCheck.getInstance(getApplicationContext()).isOnline()) {
+            RequestQueue requestQueue = Volley.newRequestQueue(this);
 
-        JsonArrayRequest objectRequest = new JsonArrayRequest(
-                Request.Method.GET,
-                URL,
-                null,
-                new Response.Listener<JSONArray>() {
-                    @Override
-                    public void onResponse(JSONArray response) {
-                        respondString = response.toString();
+            JsonArrayRequest objectRequest = new JsonArrayRequest(
+                    Request.Method.GET,
+                    URL,
+                    null,
+                    new Response.Listener<JSONArray>() {
+                        @Override
+                        public void onResponse(JSONArray response) {
+                            respondString = response.toString();
+                        }
+                    },
+                    new Response.ErrorListener() {
+                        @Override
+                        public void onErrorResponse(VolleyError error) {
+                            Log.e("Error Response", error.toString());
+                        }
                     }
-                },
-                new Response.ErrorListener() {
-                    @Override
-                    public void onErrorResponse(VolleyError error) {
-                        Log.e("Error Response",error.toString());
-                    }
+            );
+
+            requestQueue.add(objectRequest);
+
+            requestQueue.addRequestFinishedListener(new RequestQueue.RequestFinishedListener<Object>() {
+                @Override
+                public void onRequestFinished(Request<Object> request) {
+                    new Handler().postDelayed(new Runnable() {
+
+                        /*
+                         * Showing splash screen with a timer. This will be useful when you
+                         * want to show case your app logo / company
+                         */
+                        @Override
+                        public void run() {
+                            // This method will be executed once the timer is over
+                            // Start your app main activity
+                            Intent intent = new Intent(SplashActivity.this, MainActivity.class);
+                            intent.putExtra("shopList", respondString);
+                            startActivity(intent);
+
+                            // close this activity
+                            finish();
+                        }
+                    }, SPLASH_TIME_OUT);
                 }
-        );
+            });
+        }
+        else
+        {
+            AlertDialog.Builder builder = new AlertDialog.Builder(this);
+            builder.setTitle("Turn on Wifi");
 
-        requestQueue.add(objectRequest);
+            builder.setMessage("Go to Wifi Settings")
+                    .setCancelable(false)
+                    .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialogInterface, int i) {
+                            startActivity(new Intent(Settings.ACTION_WIFI_SETTINGS));
+                        }
+                    })
+                    .setNegativeButton("No", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialogInterface, int i) {
+                            finish();
+                            System.exit(0);
+                        }
+                    });
 
-        requestQueue.addRequestFinishedListener(new RequestQueue.RequestFinishedListener<Object>() {
-            @Override
-            public void onRequestFinished(Request<Object> request) {
-                new Handler().postDelayed(new Runnable() {
+            AlertDialog alertDialog = builder.create();
 
-                    /*
-                     * Showing splash screen with a timer. This will be useful when you
-                     * want to show case your app logo / company
-                     */
-                    @Override
-                    public void run() {
-                        // This method will be executed once the timer is over
-                        // Start your app main activity
-                        Intent intent = new Intent(SplashActivity.this, MainActivity.class);
-                        intent.putExtra("shopList", respondString);
-                        startActivity(intent);
+            // show it
+            alertDialog.show();
 
-                        // close this activity
-                        finish();
-                    }
-                }, SPLASH_TIME_OUT);
-            }
-        });
+           Toast.makeText(getApplicationContext(), "Ooops! No WiFi/Mobile Networks Connected!", Toast.LENGTH_SHORT).show();
 
-
-
-      //  setContentView(R.layout.activity_splash);
+        }
     }
 }

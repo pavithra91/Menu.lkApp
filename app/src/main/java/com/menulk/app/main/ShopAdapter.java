@@ -57,7 +57,7 @@ public class ShopAdapter extends RecyclerView.Adapter<ShopAdapter.ShopViewHolder
         final int _index = position;
         holder.sName.setText(shopList.get(position).getShopName());
         holder.sRating.setText(shopList.get(position).getRating());
-        holder.sOpenTime.setText(shopList.get(position).getOpenTime());
+        holder.sOpenTime.setText(shopList.get(position).getDeliveryTime());
 
         Picasso.with(context).load(shopList.get(position).getImageURL()).into(sImage);
 
@@ -113,7 +113,9 @@ public class ShopAdapter extends RecyclerView.Adapter<ShopAdapter.ShopViewHolder
                         intent.putExtra("ShopName", shopList.get(_index).getShopName());
                         intent.putExtra("Rating", shopList.get(_index).getRating());
                         intent.putExtra("OpenTime", shopList.get(_index).getOpenTime());
+                        intent.putExtra("DeliveryTime", shopList.get(_index).getDeliveryTime());
                         intent.putExtra("ImageURL", shopList.get(_index).getImageURL());
+                        intent.putExtra("Tags", shopList.get(_index).getTags());
                         intent.putExtra("RESTresponse", Response);
                         context.startActivity(intent);
 
