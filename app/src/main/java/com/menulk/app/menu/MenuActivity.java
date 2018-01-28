@@ -37,7 +37,7 @@ public class MenuActivity extends AppCompatActivity {
         TextView tags = (TextView) findViewById(R.id.tags);
         ImageView shopImage = (ImageView) findViewById(R.id.mainImage);
 
-        String iShopname = getIntent().getStringExtra("ShopName");
+        String  iShopname = getIntent().getStringExtra("ShopName");
         String iRating = getIntent().getStringExtra("Rating");
         String iDeliveryTime = getIntent().getStringExtra("OpenTime");
         String iImageURL = getIntent().getStringExtra("ImageURL");
