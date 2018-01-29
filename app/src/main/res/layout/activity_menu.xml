@@ -18,13 +18,14 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:fitsSystemWindows="true"
-            app:layout_scrollFlags="scroll|exitUntilCollapsed">
+            app:layout_scrollFlags="scroll|enterAlways">
 
             <RelativeLayout
                 android:id="@+id/layoutTop"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:background="@android:color/white">
+                android:background="#F5F5F5"
+                android:paddingBottom="20dp">
 
                 <ImageView
                     android:id="@+id/mainImage"
@@ -43,7 +44,7 @@
 
                     <ImageView
                         android:id="@+id/overlapImage"
-                        android:layout_width="350dp"
+                        android:layout_width="340dp"
                         android:layout_height="80dp"
                         android:layout_alignParentTop="true"
                         android:layout_centerHorizontal="true"
@@ -110,6 +111,7 @@
                         android:drawablePadding="5dp"
                         android:text="10.30a.m. - 3,30 p.m."
                         android:layout_marginTop="8dp"
+
                         android:textColor="#808080" />
                 </RelativeLayout>
 
